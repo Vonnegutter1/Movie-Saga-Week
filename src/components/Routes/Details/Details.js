@@ -3,42 +3,24 @@ import { connect } from 'react-redux';
 
 class Details extends Component {
 
-    // state = {
-    //     newFeeling: {
-    //         feeling: ''
-    //     }
-    // }
+    backButton = (event) => {
 
-    // nextPage = (event) => {
+        
+        this.props.history.push('/')
+    }
+    editMovie = (event) => {
 
-    //     this.props.dispatch({ type: 'UPDATE_FEELING', payload: this.state.newFeeling })
-    //     this.props.history.push('/Understanding')
-    // }
-
-    // handleChangeFor = (propsName, event) => {
-    //     this.setState({
-    //         newFeeling: {
-
-    //             [propsName]: event.target.value
-    //         }
-    //     })
-    // }
+        this.props.history.push('/Edit')
+    } 
 
     render() {
-
-
         return (
             <>
-        {/* //         <section className="feeling">
-        //             <h1>How are you Feeling today?</h1>
-
-        //             <form >
-        //                 <input type="number" placeholder="Feeling" onChange={(event) => this.handleChangeFor('feeling', event)} />
-        //                 <button onClick={this.nextPage} type="submit">Next</button>
-        //             </form> */}
-
-        {/* //         </section> */}
-        //     </>
+              <h1>Movie Details</h1>
+                <button onClick={this.backButton} type="submit">Back to List</button>
+                <button onClick={this.editMovie} type="submit">Edit</button>
+        
+      </>
 
         )
     }

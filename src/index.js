@@ -14,7 +14,8 @@ import Axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('FETCH_MOVIES', fetchMovies)
+    yield takeEvery('FETCH_MOVIES', fetchMovies),
+    yield takeEvery('FETCH_DETAILS', fetchDetails)
 }
  
 function* fetchMovies() {
@@ -26,6 +27,18 @@ function* fetchMovies() {
     } catch (error) {
         console.log('Error getting movies', error);
         alert('Could not get movies. Read a book.')
+    }
+}
+
+function* fetchDetails() {
+    try {
+        //Save the response from the server in a variable
+        const response = yield Axios.get('/details');
+        // Then we can pass the response data to the reducer
+        yield put({ type: 'SET_TAGS', payload: response.data })
+    } catch (error) {
+        console.log('Error getting details', error);
+        alert('Could not get details. Try again later.')
     }
 }
 

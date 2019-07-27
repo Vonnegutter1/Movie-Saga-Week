@@ -15,12 +15,15 @@ router.get('/', (req, res) => {
             res.sendStatus(500)
         })
 })
-
+//------------------UPDATE THIS ROUTER. THE QUERY IS WORKING BUT PULLING THE WRONG DATA----------------
 router.get('/:id', (req, res) => {
     {
-        const sqlText = `SELECT "genres"."name", "movie_genre"."genre.id" from "genres"
-    JOIN "movie_genre" ON "movie_genre"."movie_id"=$1;`;
-        pool.query(sqlText)
+        let movieId = req.params.id;
+        const sqlText = `SELECT "genres"."name", "movie_genre"."genre_id" from "genres"
+    JOIN "movie_genre" ON "movie_genre"."genre_id" = "genres"."id"
+    WHERE "movie_id" = $1;`;
+        const values = [movieId]
+        pool.query(sqlText, values)
             .then((response) => {
                 res.send(response.rows);
             })
@@ -28,7 +31,7 @@ router.get('/:id', (req, res) => {
                 console.log(`Error selecting movie genre.`, error);
                 res.sendStatuts(500);
             })
-
-        }})
+    }
+})
 
 module.exports = router;

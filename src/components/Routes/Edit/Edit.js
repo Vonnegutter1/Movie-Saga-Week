@@ -19,7 +19,9 @@ class Edit extends Component {
             <h1>Edit Page</h1>
                 <button onClick={this.cancelButton} type="submit">Cancel</button>
                 <button onClick={this.saveButton} type="submit">Save</button>
-           
+                <input placeholder="Movie Title" value="" type="text" maxlength ="50"/>
+                <input placeholder="Movie Description" value="" type="text" maxlength="999" />
+                
     
             </>
 

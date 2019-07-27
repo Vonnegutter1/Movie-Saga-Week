@@ -8,36 +8,34 @@ class List extends Component {
         this.props.dispatch({ type: 'FETCH_MOVIES' });
     }
 
-    // nextPage = (event) => {
-
-    //     // this.props.dispatch({ type: 'UPDATE_FEELING', payload: this.state.newFeeling })
-
-    //     // this.props.history.push('/Understanding')
-    // }
-
-    // handleChangeFor = (propsName, event) => {
-    //     this.setState({
-    //         newFeeling: {
-
-    //             [propsName]: event.target.value
-    //         }
-    //     })
-    // }
-
      render() {
 
       return (
           <>
-          <section>
-                {JSON.stringify(this.props.storeInstance.movies)};
-            
-                
-          </section>
+
+          <div className="App">
+
+          <div>
+        <h1>Movie List</h1>
+        <hr></hr>
+          {this.props.storeInstance.movies.map(item =>{
+              return (
+                  <div key={item.id}>
+                    <p>{item.title}<br />{item.description}</p>
+
+                    <img onClick={(event) => this.props.history.push('/details')} src={item.poster} />
+            </div>
+              )
+          })} 
+          </div>
+        </div>
           </>
-      )
-            }
-        }
-// end component
+          
+      );
+        }}
+                
+            
+    
 const putStoreInstanceOnProps = (storeInstance) => ({
     storeInstance
 })

@@ -14,11 +14,19 @@ class Details extends Component {
     } 
 
     render() {
+        let details = this.props.storeInstance.details;
         return (
+            
             <>
               <h1>Movie Details</h1>
                 <button onClick={this.backButton} type="submit">Back to List</button>
                 <button onClick={this.editMovie} type="submit">Edit</button>
+                <div>
+                    <p>Details Page</p>
+                    <p>{details.title}</p>
+                    <p>{details.description}</p>
+                    <p>{details.name}</p>
+                </div>
         
       </>
 
@@ -30,6 +38,5 @@ class Details extends Component {
 const putStoreInstanceOnProps = (storeInstance) => ({
     storeInstance
 })
-
 
 export default connect(putStoreInstanceOnProps)(Details);

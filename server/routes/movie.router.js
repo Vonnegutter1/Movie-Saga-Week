@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
-    console.log('In Router GET in movie ROUTER<------------------')
+   
     const sqlText = `SELECT * FROM "movies";`;
     pool.query(sqlText)
         .then((response) => {
@@ -48,6 +48,22 @@ router.get('/:id', (req, res) => {
                 res.sendStatuts(500);
             })
     
+})
+
+
+router.put('/update/:id', (req, res) => {
+
+    console.log('UPDATING MOVIES ROUTER--------------------------------------------------------------', req.body)
+
+    const sqlText = `UPDATE "movies" SET "title" = $1, "description" = $2 WHERE "id" = $3;`;
+    values = [req.body.name, req.body.description, req.body.id]
+    pool.query(sqlText, values)
+    .then((response)=> {
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        res.sendStatus(500);
+    })
 })
 
 module.exports = router;

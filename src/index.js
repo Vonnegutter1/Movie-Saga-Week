@@ -16,6 +16,7 @@ import Axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies)
     yield takeEvery('FETCH_DETAILS', fetchDetails)
+    yield takeEvery('EDIT_MOVIE', editMovie)
 }
  
 function* fetchMovies() {
@@ -41,6 +42,21 @@ function* fetchDetails(action) {
     } catch (error) {
         console.log('Error getting details', error);
         alert('Could not get details. Try again later.')
+    }
+}
+
+function* editMovie(action){
+    try{
+        // axios put to update database for the movie of associated ID
+       
+
+        yield Axios.put(`/list/update/${action.payload.id}`, action.payload);
+        // once the database is updated, this will bring all movies back from the database
+        yield put({type: 'FETCH_MOVIES'})
+    }
+    catch(error) {
+        console.log('Error updating DB', error);
+        alert('Annoyed at interaction.', error);
     }
 }
 
@@ -83,6 +99,7 @@ const storeInstance = createStore(
         movies,
         genres,
         details,
+        
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

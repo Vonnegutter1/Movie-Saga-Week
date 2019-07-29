@@ -24,9 +24,12 @@ class List extends Component {
 
       return (
           <>
-          <div className="App">
+          <div class="grid">
 
-          <div>
+          <div class="wrapper">
+              
+                
+              
         <h1>Movie List</h1>
         <hr></hr>
           {this.props.storeInstance.movies.map(item =>{
@@ -35,7 +38,8 @@ class List extends Component {
                     <p>{item.title}<br />{item.description}</p>
 
                     <img onClick={(event) => this.handleDetails(item)} src={item.poster} alt="" />
-            </div>
+                </div>
+           
               )
           })} 
           </div>

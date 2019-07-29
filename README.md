@@ -26,9 +26,11 @@ Steps to get the development environment running.
 2. `npm install`
 3. `npm start`
 
-Screen Shot
+Screen Shots
 
 ![Movies-Saga](public/images/pic.jpg)
+![Movies-Saga](public/images/details.jpg)
+![Movies-Saga](public/images/edit.jpg)
 
 
 ## Feature 
